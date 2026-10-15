@@ -148,7 +148,7 @@ var linkerSettings: [LinkerSetting] = []
 		.define("GIT_QSORT_BSD"),
 
 		// HTTPS via SecureTransport
-		.define("GIT_HTTPS_SECURETRANSPORT", to: "1"),
+		.define("GIT_SECURE_TRANSPORT", to: "1"),
 
 		// Hash implementations via CommonCrypto
 		.define("GIT_SHA1_COMMON_CRYPTO", to: "1"),
@@ -169,7 +169,9 @@ var linkerSettings: [LinkerSetting] = []
 	]
 
 	linkerSettings += [
-		.linkedLibrary("iconv")
+		.linkedLibrary("iconv"),
+		.linkedFramework("Security"),
+		.linkedFramework("CoreFoundation")
 	]
 #else
 	// Exclude Apple-specific backends
